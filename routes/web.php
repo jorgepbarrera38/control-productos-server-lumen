@@ -11,7 +11,7 @@
 |
 */
 
-$router->group(['prefix' => 'products'], function () use ($router) {
+$router->group(['prefix' => 'products', 'middleware' => 'auth'], function () use ($router) {
     $router->get('/', 'ProductController@index');
     $router->get('/{product}', 'ProductController@show');
     $router->post('/', 'ProductController@store');
@@ -19,10 +19,10 @@ $router->group(['prefix' => 'products'], function () use ($router) {
     $router->delete('/{product}', 'ProductController@destroy');
 });
 
-$router->group([
-    
-    'prefix' => 'auth'
+//Login
 
+$router->group([
+    'prefix' => 'auth'
 ], function ($router) {
 
     $router->post('login', 'AuthController@login');
