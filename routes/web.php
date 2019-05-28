@@ -11,6 +11,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'products'], function () use ($router) {
+    $router->get('/', 'ProductController@index');
+    $router->get('/{product}', 'ProductController@show');
+    $router->post('/', 'ProductController@store');
+    $router->put('/{product}', 'ProductController@update');
+    $router->delete('/{product}', 'ProductController@destroy');
 });
